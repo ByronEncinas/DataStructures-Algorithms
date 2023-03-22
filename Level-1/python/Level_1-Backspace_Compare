@@ -1,0 +1,16 @@
+def reductor(string):
+    stack = []
+    l = [*string]
+
+    for letter in l:
+        if letter == "#": 
+            if stack: stack.pop()
+        else:
+            stack.append(letter)
+        
+    return f"{''.join(stack)}"
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+
+        return reductor(s) == reductor(t)
