@@ -1,0 +1,17 @@
+Unsorted list, we have to use linar search or sequential search
+
+we have to search the entire list each time, that's why we rather have
+a sorted list and use binary search, dividing the list by half each iteration
+
+To understand sorting algorithms we might start with a bad one
+
+"bogo sort" takes a random time to get close to solution
+
+"selection sort" checks up the origin list and compares all values with the
+consecutive neighbour getting attention on the overall minimum in that sweep down the
+array. Once the minimum in the list is found without a doubt, we append thhis
+value to a new list, our return/result list. and delete it from the origin.
+
+now, we have an origin list with N - 1 values, to which we'll have to find 
+the new minimum. This iteration will continue until origin has no elements and 
+the size of return/result list is N and sorted.

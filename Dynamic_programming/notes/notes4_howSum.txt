@@ -1,0 +1,64 @@
+
+
+Write a function howSum(targetSum, numbers) that takes in 
+a targetSum and an array of numbers as args
+
+Should return an array containing any combination of elements that add up to the targetSum
+if there isn't, return null
+
+if there are multiple combinations possible, you may return any single one
+
+Easiest example, how about an input like
+
+howSum(7,[5,3,4,7]) -> [7]
+
+Is it almost obvious that the only way to add up
+this list's elements is just by taking 7 alone.
+
+LOOKING FOR BASE CASES
+
+howSum(8,[2,3,5]) -> [2,2,2,2]
+                  -> [5,3]
+
+howSum(0,[1,2,3,4,...]) -> []
+
+howSum(7),[2,4]) -> null 
+
+Main difference with canSum is that 
+
+if canSum -> True: each value of the branch that
+reaches the targetSum will be storing an array with each member of the
+list that add up to targetSum
+
+If canSum -> false: then we have to return null
+
+const howSum = (target, numbers, memo = {}) => {
+    if (target in memo) return memo[target];
+    if (target === 0) return [];
+    if (target < 0) return null;
+
+    for (let num of numbers) { /* Careful using "in" instead of "of" */
+        const remainder = target - num;
+        const result = howSum(remainder, numbers, memo);
+        if (result !== null) {
+            memo[target] = [ ...result, num]
+            return memo[target];
+        }
+    }
+    memo[target] = null;
+    return null;
+};
+
+/* We will use a spread operator [...arr, 'a', 'b'] that appends one array to a new one*/
+
+
+
+/* Time complexity is based on the same complexity tree of canSum  */
+
+// Brute force
+// time: O(n^m + m)
+// space: O(m)
+
+// Memo
+// time: O(n*m *m) 
+// space: O(m *m) space ocupies a maximum of m arrays of m length

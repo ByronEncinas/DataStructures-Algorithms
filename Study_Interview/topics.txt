@@ -1,0 +1,21 @@
+Algorithms:
+- Merge Sort                - Done!
+- Quick Sort                - Done!
+- Breadth-first search      - On it!
+- Depth-first search        - On it!
+- Binary Search             - Done!
+
+Data Structures:
+- Arrays 
+    ° Single LinkedList     - Done!
+    ° Stacks                - 
+- Hash Tables 
+    ° Directory in python   - Done!
+- Trees 
+    ° Binary Tree           - On it!
+- Queues                    - On it!
+- Stacks                    - On it!
+
+Concepts:
+- Big O                     - On it!
+- Recursion                 - On it!

@@ -1,0 +1,61 @@
+EXTENSIONS
+prettier
+live server
+bracket pair colorizer
+
+//run using node file.js
+
+Dynamic Programming
+
+Here we will be working on whatever coding language that we need, be it python, kava, react, Json, etc.
+
+The video is taking javascript as coding language, but i'll be taking both
+python and js.
+
+Our main focus in this dynamics programming course we will be talking
+about memorization and tabulation.
+
+Big O notation and math complexity
+
+We'll be writing a function fib(n) that takes in a number as an argument.
+The function should return the n-th number of the fubonacci seq.
+
+The 1st and 2nd number of the sequence is 1.
+
+To generate the next number, we sum the previous two.
+
+n:        1   2   3   4   5   6   7   8   9   10  11
+fib(n):   1   1   2   3   5   8   13  21  ...
+
+Sin embargo, analizando el problema de raiz, para un código que realice las funciones recursivas
+
+fib(n) = fib(n-1) + fib(n-2) hay una complejidad temporal proporcional a O(2**n)
+
+lo que genera problemas conforme n crece, así que queremos ver como es que podemos mejorar la eficiencia
+del código
+
+Aquí tenemos un pedazo de código escrito en javascript, cuyo nivel de complejidad es proporcional a O(2**n)
+
+const fib_ = (n) => {
+    if (n <= 2) return 1;
+    return fib(n - 1) + fib(n - 2);
+};
+
+Lo que queremos hacer es evitar trabajos replicados, no queremos que se calcule la misma rama del arbol de algoritmo mas de una vez
+
+pensamos que añadir una variable con entradas (una lista) que memorice valores ya calculados y los rutilice cuando sea necesario
+
+-- Añadimos una nueva variable como argumento de fib(n) -> fib(n, memo = {} )
+-- Si existe un valor para el n-esimo digito de fibonacci en memo[n] (si ya calculamos fib(n) una vez) devuelve dicho valor fib(n) = memo[n] 
+-- Nos aseguramos de guardar los valores de memo = {1,1,2,3,5,8,13,..., n-esimo término de fibonacci)}
+
+Y aprovechamos la salida como el n-esimo valor de esa lista
+
+const fib = (n, memo = {} ) => {
+    if (n in memo) return memo[n];
+    if (n <= 2) return 1;
+    memo[n] = fib(n - 1, memo) + fib(n - 2,memo);
+    return memo[n];
+};
+
+Utilizamos mas espacio de almacenamiento, en una lista que almacena los datos de la serie, pero ahorramos tiempo computacional

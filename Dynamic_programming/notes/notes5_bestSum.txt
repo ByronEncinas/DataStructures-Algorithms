@@ -1,0 +1,55 @@
+Write a function bestSum that takes un targetSum
+ and an array of numbers as args
+
+ the function should return an array containing the shortest
+ combination of numbers that add up to exactly the targetSum
+
+ if there is a tie, you ay return any
+
+ bestSum(7,[5,3,4,7]) --> [7]
+ [3,4]
+ [7]
+
+ we want to choose the shortest
+
+ 
+ bestSum(8,[2,3,5]) --> [5,3]
+ [2,2,2,2]
+ [2,3,3]
+ [5,3]
+
+""" Too much damn many ways to tackle this in python """
+
+""" list modification takes much time and resources
+.copy of new_list = list[:] are ways of not appending
+we can also concatenate
+
+ """
+
+ Instead of copying the list like shortestCombination = remainderCombination  
+ we should use shortestCombination = remainderCombination.copy() so that the 
+ shortestCombination and remainderCombination don't point to the same List in 
+ memory.
+
+ You may change this line:
+
+    if targetSum in memo: 
+        return memo[targetSum]
+into:
+
+    if targetSum in numbers: 
+        return [targetSum]
+
+You may change this line:
+
+    if targetSum in memo: 
+        return memo[targetSum]
+into:
+
+    if targetSum in numbers: 
+        return [targetSum]
+
+Why ? Because until the last recursion, memo is still empty, 
+so you never return the list with the target sum.
+
+https://stackoverflow.com/questions/66150378/i-tried-to-solve-best-sum-problem-in-python-but-i-am-not-able-to-figure-out-the

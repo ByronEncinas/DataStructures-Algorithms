@@ -1,0 +1,56 @@
+## This template is a general purpose piece of code to 
+## solve backtracking problems.
+## Depending on the specfic situation we might add or edit
+## def statements
+
+Suppose we have to check upon many possibilities to pass as valid for 
+a given conditions.
+
+In the N Queens problem the conditions is: pseudo-code bit 
+
+    for a given (board_size) find:
+    
+        iterate row and column:
+
+            position in first row not ocupied by queen
+            if it is the case discard that colum
+            if there are queens in diagonals then discard that position
+        else
+        save that position and try for a next Queen in next row
+
+
+
+def is_valid_state(state):
+    # check if it is a valid solution
+    # basicly will return a true value whenever we 
+    # accomplishe to get n ways to accomodate n Queens
+    # so that we can inprint that configuration in screen
+    return len(state) == n
+
+def get_candidates(state):
+    for a given (board_size) find:
+        
+            iterate row and column:
+
+                position in first row not ocupied by queen
+                if it is the case discard that colum
+                if there are queens in diagonals then discard that position
+            else
+            save that position and try for a next Queen in next row
+    return generated state
+
+def search(state, solutions):
+    if is_valid_state(state):
+        solutions.append(state.copy())
+        # return
+
+    for candidate in get_candidates(state):
+        state.add(candidate)
+        search(state, solutions)
+        state.remove(candidate)
+
+def solve():
+    solutions = []
+    state = set()
+    search(state, solutions)
+    return solutions

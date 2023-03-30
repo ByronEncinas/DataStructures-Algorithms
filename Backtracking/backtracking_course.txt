@@ -1,0 +1,112 @@
+N Queens problems
+Sudoku problem
+
+Essentially backtracking problems are asking to find
+valid states for certain condition.
+
+1 -[ ] [ ] [ ] [ ]
+2 -[ ] [ ] [ ] [ ]
+3 -[ ] [ ] [ ] [ ]
+4 -[ ] [ ] [ ] [ ]
+    |   |   |   |
+    A   B   C   D 
+
+In the case of a 4 queen problem in a 4x4 table
+
+¿How to construct the state for the template?
+
+If we place a Queen (Q) in the (2A) coordinate, then we
+limit ourselves for the new positions of other Queens such
+that -,/,\,| mean not available.
+
+1 -[|] [/] [ ] [ ]
+2 -[Q] [-] [-] [-]
+3 -[|] [\] [ ] [ ]
+4 -[|] [ ] [\] [ ]
+    |   |   |   |
+    A   B   C   D 
+
+Let's add another queen at 4B
+
+1 -[|] [/] [ ] [ ]
+2 -[Q] [-] [-] [-]
+3 -[|] [\] [/] [ ]
+4 -[|] [Q] [-] [-]
+    |   |   |   |
+    A   B   C   D 
+
+We cut short our candidates event more. 
+
+Let's try to guess one more time and add a Queen at 1C and 3D
+
+1 -[|] [|] [Q] [|]
+2 -[Q] [|] [|] [|]
+3 -[|] [|] [|] [Q]
+4 -[|] [Q] [|] [|]
+    |   |   |   |
+    A   B   C   D
+
+This configuration of 4 Queens is 
+what we call a valid state 
+
+Since no Queen is attacking or being attacked
+
+As a counter example of a invalid state
+
+1 -[Q] [|] [-] [-]
+2 -[|] [|] [/] [ ]
+3 -[|] [Q] [-] [-]
+4 -[|] [|] [\] [\]
+    |   |   |   |
+    A   B   C   D 
+
+Only allows for 3 Queens at most, so our state won't submit our 
+4 Queen original request.
+
+freecodecamp walkthrough
+
+""" 
+the n-queens puzzle is the problem of placing
+n queens on a n x n chessboard such that no two queens
+attack each other.
+
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+You may return the answer in any order.
+
+Each solution contains a distinct board configuration of the n-queens placements.
+where Q and - both indicate a Queen and an empty space.
+
+Input: n = 4
+Output:
+[
+    ['.Q..','...Q','Q...','..Q.'], -> [2,4,1,3]
+    ['..Q.','Q...','...Q','.Q..']  -> [3,1,4,2]
+]
+
+States will be represented as
+    ['.Q..','...Q','Q...','..Q.'], -> [2,4,1,3]
+    ['..Q.','Q...','...Q','.Q..']  -> [3,1,4,2]
+
+Let's transform from : [1,3,0,2] to:
+
+0 -[ ] [ ] [Q] [ ]
+1 -[Q] [ ] [ ] [ ]
+2 -[ ] [ ] [ ] [Q]
+3 -[ ] [Q] [ ] [ ]
+    |   |   |   |
+    A   B   C   D 
+
+for n = 4 we have 
+
+('1 -', ' [ ]  [ ]  [ ]  [ ]  [ ]  [ ]  [ ]  [Q] ')
+('2 -', ' [ ]  [ ]  [ ]  [Q]  [ ]  [ ]  [ ]  [ ] ')
+('3 -', ' [Q]  [ ]  [ ]  [ ]  [ ]  [ ]  [ ]  [ ] ')
+('4 -', ' [ ]  [ ]  [Q]  [ ]  [ ]  [ ]  [ ]  [ ] ')
+('5 -', ' [ ]  [ ]  [ ]  [ ]  [ ]  [Q]  [ ]  [ ] ')
+('6 -', ' [ ]  [Q]  [ ]  [ ]  [ ]  [ ]  [ ]  [ ] ')
+('7 -', ' [ ]  [ ]  [ ]  [ ]  [ ]  [ ]  [Q]  [ ] ')
+('8 -', ' [ ]  [ ]  [ ]  [ ]  [Q]  [ ]  [ ]  [ ] ')
+--------   |    |    |    |    |    |    |    |
+--------   A    B    C    D    E    F    G    H
+
+as one of many solutions

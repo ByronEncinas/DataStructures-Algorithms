@@ -1,0 +1,96 @@
+Write a function canSum that takes in a target sum and an array
+of number as arguments
+
+The function should return a boolean indicating wheter or not it is possible to generate the targetSum using numbers from the array.
+
+You may use an element of the array as many times as needed
+
+you may assume all inputs are nonnegative.
+
+Basicly we want a True or False that answers the question:
+
+¿It is possible to add array = [...] elements to targetSum?
+
+Example:
+
+TargetSum = 7
+
+array = [5,3,4,7]
+
+Such that:
+7 = array[4] = 7 -> True
+7 = array[3] array[2] = 4 + 3 -> True
+
+So there are two ways to get to targetSum from array elements.
+
+The overall question gives True. It is possible!
+
+Example:
+
+TargetSum = 7
+
+array = [2,4]
+
+Such that:
+7 = there is no way to add up [2,4] elements upto 7 -> False
+
+Y pues eso
+
+
+url = "https://stackoverflow.com/questions/65428535/why-does-this-solution-work-in-javascript-but-not-in-python-dynamic-programmin"
+
+## Este link contiene información sobre el funcionamiento de python
+## y por qué es que una báasica implementación de la memoización no 
+## parece funcionar igual que en JS
+
+Analicemos las diferencias entre python y javascript
+
+#print(canSum(7,[2,2])) --> Es False
+
+#print(canSum(7,[2,1])) --> Es True pero responde False
+
+#print(canSum(300,[7,14])) --> Es False
+
+Este error viene de la forma en que se está guardando el memo
+
+Cuando realizamos la llamada
+
+print(canSum(7,[2,3])) --> obtenemos True
+
+Pero después, una segunda llamada
+
+print(canSum(7,[2,4]))
+
+La primera condición es
+
+    if (targetSum in memo):
+        return memo[targetSum]
+
+Sin embargo, ya existe memo[7] = True
+
+por lo que 
+
+print(canSum(7,[2,4])) --> True
+
+Los datos de memo se están almacenando incluso después de devolver
+un resultado. y Por lo tanto devolverá True para todo targetSum = 7 aunque
+la lista no cumpla la condición
+
+TODO ESTO POR QUE python COMPARTE ARGUMENTOS POR DEFECTO, COMO LO ES memo
+
+Esto se arregla haciendo que se almacene "targetSum, nums" en el diccionario (memo) 
+
+de modo que podemos hacer una tupla 
+
+keytuple = (targetSum, tuple(numbers))
+
+también usando un diccionario con diccionarios dentro
+
+el resto del códgo permanece igual
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+Memoization recipe
+
+Guideline to memoize
+
+Start -- Get a working solution of the problem
+
+° Visualize the problem tree
+° Implement the tree using recursion
+° test brute force solution (it may be slow but not wrong)
+
+Optimize/
+
+° add memo object 
+° add a base case to return memo values
+° store return values into the memo
+
+End --

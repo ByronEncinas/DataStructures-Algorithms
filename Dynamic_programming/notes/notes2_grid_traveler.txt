@@ -1,0 +1,80 @@
+Say that you are a traveler on a 2D grid. 
+
+You begin in the top-left corner and your goal i to travel to the bottom-right corner.
+
+Only down and right moves allowed.
+
+-- ¿How many ways can I accomplish this goal in a m x n grid?
+
+-- Our function does only take (m,n) as variables.
+
+Values for grid_traveler(0,n) = grid_traveler(m,0) = 0
+and grid_traveler(1,1) = 1
+
+That are our base cases
+
+Lets analize the 3x3 case
+
+We suppose a first step downwards.
+
+Whatever steps come after a downward step in a 3x3 limits our options of movement
+to the ones that a traveler has on a 2x3, same happens when taking another downward movement
+such that our available steps are only rightward and so, we are limited to the 1x3 grid all the way to a 1x1
+
+We can see the way the algorithmic tree is constructed and how this relates to the fibonacci recursive exercise.
+
+Let's analize the time complexity of the tree
+
+for a (m,n) = (2,3) grid, we can analize in the recursive sense that the farthest base case
+is m + n - 1 = 4 aproximatelly which tells us that, in Big O Notation we have a time complexity such thatw
+each node divides in 2 branches, 2**(m + n - 1) or just  O(2**(m+n)).
+
+We want to improve this... ¿How?
+
+We can memoize the similar arguments such that
+
+grid_traveler(n,m) = grid_traveler(m,n) 
+
+const gridTraveler_ = (m,n) => {
+    if (m === 1 && n === 1) return 1;
+    if (m === 0 || n === 0) return 0;
+    return gridTraveler_(m-1,n) + gridTraveler_(m,n-1);
+};
+
+console.log(gridTraveler_(3,3))
+
+// but if (m,n) = (18,18) it gets slow
+
+
+// Let's try add memoization before continuing with the video
+
+const gridTraveler = (m,n, memo = {}) => {
+    // are the args in memo
+    // we add new contstant
+    const key = m + ',' + n // this aint adding numbers, is concatenation
+    if (key in memo) return memo[key] 
+    // if m + n is in the dict called memo
+    // then we will save memo[key = m + n] = ##steps used to get there
+    if (m === 1 && n === 1) return 1;
+    if (m === 0 || n === 0) return 0;
+    memo[key] = gridTraveler(m-1,n, memo) + gridTraveler(m,n-1,memo)
+    return memo[key];
+};
+
+console.log(gridTraveler(18,18))
+
+// Difference between this ant fibonacci, was only the way we get the memo called up
+
+// In fibonacci we are supposed to take the n-th position and store in memo[n] = fib(n)
+
+// In grid traveler we have not 1, but two positions in both x and y for the grid.
+// (m,n) define our entry, but we have discovered that mxn and nxm match exactly in number of ways
+// to get from starting position to final position, so we can get a new constant  key = m + n such that
+// when we have already calculated the (m,n) or (n,m) anzats we can store it with a identifier m + n
+// so memo[ m + n ] = ## number of steps for such grid.
+
+// finally, we already have worked out to implement memoization in both codes successfully.
+
+
+
+

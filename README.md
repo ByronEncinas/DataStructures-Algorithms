@@ -1,5 +1,11 @@
-# LeetCode Study Plan 75 - Solved Exercises
+# Data Structures and Algorithms in Several Languages
 
-Working solutions as a practice for a series of advanced courses in python.
+- LeetCode Solutions
+- Dynamic Programming studies
+- Backtracking studies
+- Sorting Algorithms
+- Linked Lists and Binary Tree related code
+- Discrete and Fast Fourier Transforms
 
-Intentions of expanding into C++ language step on the way, but still on pause.
+Working solutions as a practice for a series of advanced courses in 
+python. Intentions of expanding into C++ language step on the way, but still on pause.
